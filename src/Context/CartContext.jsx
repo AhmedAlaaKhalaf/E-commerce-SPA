@@ -8,6 +8,8 @@ export default function CartContextProvider(props) {
         token: localStorage.getItem('userToken'),
       } 
       const [cartId, setcartId] = useState(0);
+      const [numberItems, setNumberItems] = useState(0);
+      
       
 
     function getLoggedUserCart() {
@@ -16,6 +18,8 @@ export default function CartContextProvider(props) {
         })
         .then((apiResponse) =>{ 
             setcartId(apiResponse.data.data._id)
+            setNumberItems(apiResponse.data.numOfCartItems);
+            
            return apiResponse 
         })  //return response
         .catch((error) => error)  //return error        
@@ -59,7 +63,7 @@ export default function CartContextProvider(props) {
             getLoggedUserCart()
         },[])
 
-        return <CartContext.Provider value={{getLoggedUserCart, addProductToCart, updateCartItemCount, deleteCartItem, checkout,cartId}}>
+        return <CartContext.Provider value={{getLoggedUserCart, addProductToCart, updateCartItemCount, deleteCartItem, checkout,cartId,setNumberItems,numberItems}}>
         {props.children}
     </CartContext.Provider>
         }

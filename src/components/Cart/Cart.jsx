@@ -11,6 +11,8 @@ export default function Cart() {
   let { getLoggedUserCart ,updateCartItemCount, deleteCartItem} = useContext(CartContext);
   const [cartDetails ,setCartDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  let {setNumberItems,numberItems} = useContext(CartContext);
+
   
   async function getCartItems(){
     setIsLoading(false)
@@ -28,7 +30,8 @@ export default function Cart() {
   }
   async function deleteItem(productId, count){
     let response = await deleteCartItem(productId, count);
-    setCartDetails(response.data.data)
+    setCartDetails(response.data.data);
+    setNumberItems(numberItems-1);
   }
 
     useEffect(()=>{

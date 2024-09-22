@@ -12,6 +12,7 @@ import toast from 'react-hot-toast';
 export default function RecentProducts() {
   const [cartLoading, setCartLoading] = useState(false);
   const [currentProductId, setCurrentProductId] = useState(0);
+  let {setNumberItems,numberItems} = useContext(CartContext);
 
   function getRecent(){
       return axios.get(`https://ecommerce.routemisr.com/api/v1/products`);
@@ -22,6 +23,7 @@ export default function RecentProducts() {
       let response = await addProductToCart(productId);       
       if(response.data.status ==="success") {
         setCartLoading(false);
+        setNumberItems(numberItems+1);
         toast.success(response.data.message ,{
           style:{padding:20}
         })

@@ -7,11 +7,13 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { CounterContext } from '../../Context/CounterContext';
 import { UserContext } from '../../Context/UserContext';
+import { CartContext } from '../../Context/CartContext';
 
 
 export default function CollapsibleNavbar() {
 
-let {getCounter} = useContext(CounterContext);
+// let {getCounter} = useContext(CounterContext);
+let {numberItems} = useContext(CartContext);
 let {userLogin,setUserLogin} = useContext(UserContext);
 let navigate = useNavigate();
 const [cartLength, setCartLength] = useState(0);
@@ -48,7 +50,7 @@ const [cartLength, setCartLength] = useState(0);
           <Nav className="gap-3 fs-5 align-items-center"> 
           {userLogin !== null ? <>
             <li onClick={logOut} className='nav-list-item'><span className={'text-secondary text-decoration-none cursor-pointer'}>LogOut</span></li> 
-          <li className='nav-list-item'><NavLink className={'text-secondary text-decoration-none text-capitalize'} to="cart">Cart</NavLink> <span className='bg-success text-white rounded-circle px-2 py-1'>{cartLength}</span></li> 
+          <li className='nav-list-item'><NavLink className={'text-secondary text-decoration-none text-capitalize'} to="cart">Cart</NavLink> <span className='bg-success text-white rounded-circle px-2 py-1'>{numberItems}</span></li> 
           <li className='nav-list-item'><p className={'text-secondary text-decoration-none m-0'}>Hello</p></li> 
           </>: <>
           <li className='nav-list-item'><NavLink className={'text-secondary text-decoration-none'} to="login">Login</NavLink></li> 

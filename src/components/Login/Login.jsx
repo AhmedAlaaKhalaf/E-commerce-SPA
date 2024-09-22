@@ -64,7 +64,7 @@ export default function Login() {
   <div className='formTitle'>
   <h2 className='text-success'>Login Now</h2>
   </div>
-    <Form onSubmit={formik.handleSubmit}>
+    <Form className='emptyAlertContainer' onSubmit={formik.handleSubmit}>
       <Form.Group className="text-start mb-3">
         <Form.Label className='px-2' id='email'>Email</Form.Label>
         <Form.Control htmlFor='email' onBlur={formik.handleBlur} onChange={formik.handleChange} type="email" value={formik.values.email} name="email" placeholder="Enter Your Email" />
