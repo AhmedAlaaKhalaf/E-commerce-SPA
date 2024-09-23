@@ -86,7 +86,7 @@ export default function ProductDetails() {
           
         </div>
         <div className='col-md-8 col-sm-12'>
-          <h3 className='w-100 text-success text-start'>{productDetails?.title}</h3>
+          <h3 className='w-100 text-success text-start mt-4'>{productDetails?.title}</h3>
           <p className='w-100 text-secondary text-start'>{productDetails?.description}</p>
           <div className='d-flex justify-content-between my-4'>
                 <h4 className='price text-black'>{productDetails?.price} EGP</h4>
