@@ -3,6 +3,8 @@ import Style from './CategoriesSlider.module.css'
 import axios from 'axios'
 import Slider from "react-slick";
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
+
 
 
 export default function CategoriesSlider() {
@@ -60,10 +62,12 @@ console.log(data);
     <h1>Shop By Category</h1>
     <Slider {...settings}>
         {data?.data.data.map((category)=>
+          <Link to={`/categories/${category.name}`}>
         <div key={category?._id} className='categoryContainer'>
         <img className='w-100 category-img p-1' src={category.image}/>
         <h3 className='text-success pb-4'>{category.name}</h3>
         </div>
+        </Link>
          )}
     </Slider>
     </div>
