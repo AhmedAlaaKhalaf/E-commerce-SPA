@@ -19,6 +19,8 @@ export default function ProductDetails() {
   const [currentProductId, setCurrentProductId] = useState(0);
 
 
+
+
   let {id,category} =useParams();
   let settings = {
     dots: true,

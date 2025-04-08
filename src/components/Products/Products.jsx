@@ -16,16 +16,27 @@ export default function Products() {
 
   let {addProductToCart} = useContext(CartContext);
   async function addProduct(productId) {
-    let response = await addProductToCart(productId); 
-    if(response.data.status ==="success") {
-      toast.success(response.data.message ,{
-        style:{padding:20}
-      })
-    }
-    else {
-      toast.error(response.data.message ,{
-        style:{padding:20}
-      })
+    try {
+      let response = await addProductToCart(productId); 
+      if(response?.data?.status === "success") {
+        toast.success(response.data.message, {
+          style: {padding: 20}
+        });
+      } else {
+        toast.error("Failed to add product to cart", {
+          style: {padding: 20}
+        });
+      }
+    } catch (error) {
+      if(error?.response?.status === 401) {
+        toast.error("Please login first to add items to cart", {
+          style: {padding: 20}
+        });
+      } else {
+        toast.error(error?.response?.data?.message || "Failed to add product to cart", {
+          style: {padding: 20}
+        });
+      }
     }
   }
 
